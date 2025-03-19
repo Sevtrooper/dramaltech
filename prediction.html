@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Venez consulter les présages sacrés de l'Empereur-Dieu à travers les rituels du Mechanicum."
+        />
+        <meta
+            name="keywords"
+            content="Futur, Omnimessie, Prédiction, Empereur-Dieu, Mechanicus"
+        />
+        <meta name="author" content="Techno-Prêtre du Mechanicum" />
+        <title>Lecture de l'Avenir - Prédictions du Dieu-Machine</title>
+        <link rel="stylesheet" href="prediction.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="title">
+                🔮 Lecture du Futur - Oracle de l'Empereur-Dieu
+            </h1>
+            <p class="subtitle">
+                Accédez aux présages sacrés dans les rouages de la Machine
+                divine
+            </p>
+        </header>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="mechanichum.html">Accueil</a></li>
+                <li><a href="contactmagos.html">Contact Magos-Tech</a></li>
+                <li><a href="prediction.html">Lecture de l'Avenir</a></li>
+                <li><a href="about.html">À propos</a></li>
+            </ul>
+        </nav>
+
+        <section class="section">
+            <h2 class="section-title">
+                📡 Consulter les Présages du Dieu-Machine
+            </h2>
+            <p class="section-content">
+                Interrogez les voies impénétrables du destin à travers les
+                circuits et les codes sacrés. Ce rituel vous permettra de voir
+                un fragment de l'avenir, éclairé par la lumière divine de
+                l'Empereur-Dieu.
+            </p>
+
+            <form class="prediction-form">
+                <label for="name">Nom du Serviteur :</label>
+                <input
+                    type="text"
+                    id="name"
+                    class="input-box"
+                    placeholder="Votre nom sacré"
+                    required
+                />
+
+                <label for="question">Question Sacrée :</label>
+                <textarea
+                    id="question"
+                    class="input-box"
+                    placeholder="Demandez ce que vous souhaitez savoir..."
+                    required
+                ></textarea>
+
+                <button type="submit" class="submit-button">
+                    ⚙️ Interroger l'Oracle
+                </button>
+            </form>
+
+            <section class="prediction-results">
+                <h3 class="results-title">
+                    🛠️ Votre Avenir - Les Rouages de la Machine
+                </h3>
+                <p class="results-text">
+                    La réponse sacrée sera délivrée selon la programmation
+                    divine. Gardez foi en l'Omnimessie, qui guide vos pas dans
+                    l'infini du futur.
+                </p>
+                <div id="predicted-future" class="predicted-future">
+                    <!-- Les résultats de la prédiction sacrée apparaîtront ici après soumission -->
+                </div>
+            </section>
+        </section>
+
+        <footer class="footer">
+            <p class="footer-text">
+                &copy; 2025 Dramaltech. Que l'Esprit-Machine veille sur vous.
+                ⚙️🔧
+            </p>
+        </footer>
+
+        <script>
+            // Script pour simuler la prédiction de l'avenir du Serviteur
+            document
+                .querySelector(".prediction-form")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const name = document.getElementById("name").value;
+                    const question = document.getElementById("question").value;
+
+                    const responses = [
+                        "Le futur est incertain, mais l'Omnimessie guide vos pas.",
+                        "Votre destin est forgé dans les étoiles, sous l'œil de l'Empereur-Dieu.",
+                        "Les circuits du destin sont alignés pour vous accorder un grand honneur.",
+                        "Le Dieu-Machine a révélé un grand péril à venir, préparez-vous.",
+                        "Les voies du destin vous conduisent vers la gloire de l'Humanité.",
+                    ];
+
+                    const randomResponse =
+                        responses[Math.floor(Math.random() * responses.length)];
+
+                    document.getElementById("predicted-future").innerHTML = `
+                <p><strong>Prédiction pour ${name} :</strong></p>
+                <p>${randomResponse}</p>
+            `;
+                });
+        </script>
+    </body>
+</html>
