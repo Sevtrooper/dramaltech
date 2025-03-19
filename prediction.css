@@ -1,0 +1,209 @@
+/* ==============================
+    Design Sacré du Mechanicum
+   ============================== */
+
+/* Général */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Police Machine */
+    background-color: #1a1a1a; /* Fond sombre pour l'aura de la Machine */
+    color: #c0c0c0; /* Couleur métallique des textes */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Entête */
+.header {
+    background-color: #333333; /* Sombre et solide, comme un titan de métal */
+    color: #ffcc00; /* Lueur d'or, symbolisant la lumière divine de l'Omnimessie */
+    text-align: center;
+    padding: 2rem 0;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombre représentant l'aura divine */
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+/* Navigation du menu */
+nav.menu {
+    background-color: #222222;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+nav.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav.menu li {
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+nav.menu a {
+    color: #c0c0c0;
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav.menu a:hover {
+    color: #ffcc00; /* Effet lumineux sacré */
+}
+
+/* Section Principale */
+.section {
+    background-color: #333333; /* Fond métallisé pour les informations sacrées */
+    color: #c0c0c0;
+    padding: 2rem;
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8); /* Ombre sacrée pour l'impact */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #ffcc00;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-content {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Formulaire sacré */
+form.prediction-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.prediction-form label {
+    font-size: 1.2rem;
+    color: #ffcc00;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+form.prediction-form .input-box {
+    background-color: #222222;
+    border: 1px solid #ffcc00;
+    color: #c0c0c0;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 70%;
+    max-width: 500px;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+form.prediction-form .input-box:focus {
+    background-color: #444444;
+    outline: none;
+}
+
+form.prediction-form .submit-button {
+    background-color: #ffcc00;
+    color: #222222;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form.prediction-form .submit-button:hover {
+    background-color: #e5b000;
+}
+
+/* Résultats de la Prédiction */
+.prediction-results {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.results-title {
+    font-size: 2rem;
+    color: #ffcc00;
+    margin-bottom: 1rem;
+}
+
+.results-text {
+    font-size: 1.2rem;
+    color: #c0c0c0;
+}
+
+.predicted-future {
+    background-color: #222222;
+    color: #c0c0c0;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+}
+
+.predicted-future p {
+    font-size: 1.5rem;
+}
+
+/* Pied de page */
+.footer {
+    background-color: #333333;
+    color: #c0c0c0;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* Effets Machine */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px #ffcc00;
+    }
+    50% {
+        box-shadow: 0 0 20px #ffcc00;
+    }
+    100% {
+        box-shadow: 0 0 10px #ffcc00;
+    }
+}
+
+.submit-button, .input-box {
+    animation: pulse 2s infinite;
+}
+
+/* ==============================
+   Fin du Style Sacré
+   ============================== */
