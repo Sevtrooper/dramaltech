@@ -65,55 +65,64 @@
         <script>
             const LLAMA_API_KEY = "30509b70-54bf-4101-bafe-8babfb709bd4";
 
-            document
-                .getElementById("search-button")
-                .addEventListener("click", rechercherWikipedia);
-            document
-                .getElementById("search-input")
-                .addEventListener("keypress", function (event) {
-                    if (event.key === "Enter") {
-                        rechercherWikipedia();
-                    }
-                });
+            document.getElementById("search-button").addEventListener("click", rechercherWikipedia);
+			document.getElementById("search-input").addEventListener("keypress", function (event) {
+			if (event.key === "Enter") {
+				rechercherWikipedia();
+			}
+			});
 
-            async function rechercherWikipedia() {
-                let query = document
-                    .getElementById("search-input")
-                    .value.trim();
-                if (!query) {
-                    document.getElementById("search-results").innerHTML =
-                        '<p class="feature-item">⚠️ Aucune donnée ne peut être cogitée sans une entrée valide !</p>';
-                    return;
-                }
+	async function rechercherWikipedia() {
+		let query = document.getElementById("search-input").value.trim();
+		
+		// 🔥 Filtrage des mots-clés hérétiques 🔥
+		const motsInterdits = ["chaos", "tzeentch", "khorne", "nurgle", "slaanesh", "heretique", "xenos", "horus", "traitre"];
+		if (motsInterdits.some(mot => query.toLowerCase().includes(mot))) {
+			document.getElementById("search-results").innerHTML = `
+				<p class="feature-item">🚨 ALERTE INQUISITORIALE 🚨</p>
+				<p class="section-content">Tentative d'accès à des archives corrompues détectée ! <br>
+				L'Inquisition a été notifiée. Restez où vous êtes.</p>
+				<p class="feature-item">🔥 Exterminatus en cours... 🔥</p>
+			`;
+			console.warn("⚠️ HÉRÉSIE TECHNIQUE DÉTECTÉE ⚠️ : Tentative de recherche interdite sur " + query);
+			return;
+		}
 
-                query = encodeURIComponent(query);
-                const endpoint = `https://fr.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|info&exintro=true&explaintext=true&titles=${query}&redirects=1&inprop=url`;
-                const resultsContainer =
-                    document.getElementById("search-results");
-                resultsContainer.innerHTML =
-                    '<p class="loading">⏳ Consultations des archives sacrées...</p>';
+		if (!query) {
+			document.getElementById("search-results").innerHTML =
+				'<p class="feature-item">⚠️ Aucune donnée ne peut être cogitée sans une entrée valide !</p>';
+			return;
+		}
 
-                try {
-                    const response = await fetch(endpoint);
-                    const data = await response.json();
-                    const pages = data.query.pages;
-                    const pageId = Object.keys(pages)[0];
-                    const page = pages[pageId];
+		query = encodeURIComponent(query);
+		const endpoint = `https://fr.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts|info&exintro=true&explaintext=true&redirects=1&inprop=url&generator=search&gsrsearch=${query}&gsrlimit=1`;
 
-                    if (pageId === "-1") {
-                        return rechercherLlamaAI(query);
-                    }
+		const resultsContainer = document.getElementById("search-results");
+		resultsContainer.innerHTML = '<p class="loading">⏳ Consultations des archives sacrées...</p>';
 
-                    resultsContainer.innerHTML = `
-                    <h2 class="section-title">📜 Résultats pour : ${page.title}</h2>
-                    <p class="section-content">${page.extract || "Aucune description disponible."}</p>
-                    <a href="${page.fullurl}" target="_blank" class="feature-item">🔗 Accéder aux archives complètes</a>
-                `;
-                } catch (error) {
-                    resultsContainer.innerHTML =
-                        '<p class="feature-item">🚨 Échec de la connexion aux archives sacrées.</p>';
-                }
-            }
+		try {
+			const response = await fetch(endpoint);
+			const data = await response.json();
+
+			if (!data.query || !data.query.pages) {
+				resultsContainer.innerHTML = '<p class="feature-item">⚠️ Aucune donnée retrouvée dans les cogitateurs archivaux.</p>';
+				return;
+			}
+
+			// Récupérer la première page valide
+			const pages = Object.values(data.query.pages);
+			const page = pages[0];
+
+			resultsContainer.innerHTML = `
+				<h2 class="section-title">📜 Résultats pour : ${page.title}</h2>
+				<p class="section-content">${page.extract || "Aucune description disponible."}</p>
+				<a href="${page.fullurl}" target="_blank" class="feature-item">🔗 Accéder aux archives complètes</a>
+			`;
+		} catch (error) {
+			resultsContainer.innerHTML = '<p class="feature-item">🚨 Échec de la connexion aux archives sacrées.</p>';
+		}
+	}
+
 
             async function rechercherLlamaAI(query) {
                 const resultsContainer =
